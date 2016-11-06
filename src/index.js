@@ -1,7 +1,4 @@
-const str = 'ES6';
-console.log(`Hello ${str}`);
+import Cat from './dog';
 
-const Dog = require('./dog');
-
-const penny = new Dog('Penny');
+const penny = new Cat('Penny');
 console.log(penny.bark());

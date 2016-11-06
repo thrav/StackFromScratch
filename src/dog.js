@@ -1,11 +1,9 @@
-class Dog {
+export default class {
   constructor(name) {
     this.name = name;
   }
 
   bark() {
-    return `Wah wah, I am ${this.name}`;
+    return `Bark bark, I am ${this.name}`;
   }
 }
-
-module.exports = Dog;
