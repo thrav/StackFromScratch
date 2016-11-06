@@ -1,4 +1,4 @@
-export default class {
+class Dog {
   constructor(name) {
     this.name = name;
   }
@@ -7,3 +7,5 @@ export default class {
     return `Bark bark, I am ${this.name}`;
   }
 }
+
+module.exports = Dog;
