@@ -26,7 +26,8 @@
   "babel": {
     "presets": [
       "latest",
-      "react"
+      "react",
+      "flow"
     ]
   },
   "dependencies": {
@@ -40,12 +41,17 @@
     "redux-immutable": "^3.0.8"
   },
   "eslintConfig": {
+    "parser": "babel-eslint",
     "env": {
       "browser": true
     },
-    "extends": "airbnb",
+    "extends": [
+      "airbnb",
+      "plugin:flowtype/recommended"
+    ],
     "plugins": [
-      "import"
+      "import",
+      "flowtype"
     ],
     "rules": {
       "new-cap": [
