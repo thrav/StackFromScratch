@@ -7,6 +7,7 @@ import del from 'del';
 import eslint from 'gulp-eslint';
 import webpack from 'webpack-stream';
 import webpackConfig from './webpack.config.babel';
+import mocha from 'gulp-mocha';
 
 const paths = {
   allSrcJs: 'src/**/*.js?(x)',
@@ -18,6 +19,7 @@ const paths = {
   clientBundle: 'dist/client-bundle.js?(.map)',
   libDir: 'lib',
   distDir: 'dist',
+  allLibTests: 'lib/test/**/*.js',
 };
 
 gulp.task('clean', () => del([
@@ -31,7 +33,7 @@ gulp.task('build', ['lint', 'clean'], () =>
     .pipe(gulp.dest(paths.libDir))
 );
 
-gulp.task('main', ['lint', 'clean'], () =>
+gulp.task('main', ['test'], () =>
   gulp.src(paths.clientEntryPoint)
     .pipe(webpack(webpackConfig))
     .pipe(gulp.dest(paths.distDir))
@@ -42,6 +44,11 @@ gulp.task('watch', () => {
 });
 
 gulp.task('default', ['watch', 'main']);
+
+gulp.task('test', ['build'], () =>
+  gulp.src(paths.allLibTests)
+    .pipe(mocha())
+);
 
 gulp.task('lint', () =>
   gulp.src([
